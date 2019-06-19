@@ -69,14 +69,15 @@ router.post(
       };
 
       // Get Token
-      jwt.sign(                   // sign token
-        payload,                  // pass in payload
-        config.get("jwtSecret"),  // pass in secret
-        { expiresIn: 3600 },      // optional expiration (recommended)
+      jwt.sign(
+        payload, // pass in payload
+        config.get("jwtSecret"), // pass in secret
+        { expiresIn: 360000 }, // optional expiration (recommended)
         (err, token) => {
-        if (err) throw err;
-        res.json({ token });      // if no error, send token to client
-      });
+          if (err) throw err;
+          res.json({ token }); // if no error, send token to client
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
