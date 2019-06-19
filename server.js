@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+
 const users = require('./routes/api/users');
 const auth = require('./routes/api/auth');
 const profile = require('./routes/api/profile');
@@ -10,6 +11,9 @@ const app = express();
 // Connect DB
 connectDB();
 app.get('/', (req, res) => res.send('API Running'));
+
+// Init Middleware
+app.use(express.json({ extended: false }));
 
 
 // Define Routes
